@@ -20,3 +20,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: nginx-deployment-config
+          resources:
+            limits:
+              cpu: 5
+            requests:
+              cpu: 5

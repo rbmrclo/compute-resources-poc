@@ -29,3 +29,16 @@ echo "============================="
 echo "Compute Resources:"
 kubectl get pod $POD_NAME -o json | jq -r '.spec.containers[].resources'
 echo "============================="
+
+echo
+echo "============================="
+echo "Pods:"
+kubectl get pods
+echo "============================="
+
+echo
+echo "============================="
+echo "Pod condition:"
+kubectl get pod $POD_NAME -o json | jq -r '.status.conditions[].message'
+echo "============================="
+
