@@ -94,3 +94,52 @@ Allocated resources:
 - We have an allocatable `4 vCPU`
 - As we can see, the CPU limit has reached `25%` of the node's CPU capacity.
 - This means that with this current setup, once we add more replicas of the `nginx-deployment` pod, we could overcommit the node which could affect it's stability.
+
+### Case A
+
+- CPU requests are greater than the default resource limits, the pod won’t be created.
+
+```
+$ ./deploy.sh
+
+Switched to context "docker-for-desktop".
+deployment.extensions "nginx-deployment" deleted
+limitrange "cpu-limit-range" deleted
+
+deployment.apps "nginx-deployment" created
+limitrange "cpu-limit-range" created
+
+=============================
+Limits:
+NAME              AGE
+cpu-limit-range   0s
+=============================
+=============================
+Quality of Service Class:
+Burstable
+=============================
+
+=============================
+Compute Resources:
+{
+  "limits": {
+    "cpu": "5"
+  },
+  "requests": {
+    "cpu": "5"
+  }
+}
+=============================
+
+=============================
+Pods:
+NAME                               READY     STATUS    RESTARTS   AGE
+nginx-deployment-6f9d8ff8f-mxbkf   0/1       Pending   0          0s
+=============================
+
+=============================
+Pod condition:
+0/1 nodes are available: 1 Insufficient cpu.
+```
+
+- The pods can't be created because CPU requests is higher than the allocatable resource.
