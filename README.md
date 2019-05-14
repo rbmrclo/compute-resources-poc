@@ -1,4 +1,4 @@
-# Configure Compute Resources with `LimitRange`
+## Configure Compute Resources with `LimitRange`
 
 A proof of concept of how CPU and Memory usage are allocated per container when using `LimitRange`.
 
@@ -91,6 +91,6 @@ Allocated resources:
   811m (20%)    1 (25%)     110Mi (1%)       170Mi (1%)
 ```
 
-- We have an allocatable 4 vCPU
-- As we can see, the CPU limit has reached 25% of the node capacity.
-- This means that with this current setup, once we add more replicas of the nginx-deployment pod, we could overcommit the node which could affect it's stability.
+- We have an allocatable `4 vCPU`
+- As we can see, the CPU limit has reached `25%` of the node's CPU capacity.
+- This means that with this current setup, once we add more replicas of the `nginx-deployment` pod, we could overcommit the node which could affect it's stability.
