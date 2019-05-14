@@ -1,0 +1,3 @@
+resources:
+  - cpu_limit_range.yaml
+  - deployment.yaml
